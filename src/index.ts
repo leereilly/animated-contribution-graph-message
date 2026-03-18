@@ -63,7 +63,7 @@ function validateMessage(value: string): string {
 export function parseCli(argv: string[]): CliOptions {
   const program = new Command();
   program
-    .name("animated-contribution-graph-message")
+    .name("graphsay")
     .description("Generate animated GitHub contribution graph messages")
     .requiredOption(
       "-m, --message <text>",

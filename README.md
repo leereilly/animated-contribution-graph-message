@@ -1,10 +1,10 @@
-# Animated Contribution Graph Message
+# graphsay
 
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="contribution-graph-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="contribution-graph-light.svg">
-    <img alt="Animated contribution graph message" src="contribution-graph-light.svg">
+    <img alt="graphsay" src="contribution-graph-light.svg">
   </picture>
 </p>
 
@@ -20,20 +20,20 @@ Generate animated GitHub-style contribution graph messages as SVG, GIF, WebP, or
 ### Run with npx (no install needed)
 
 ```bash
-npx animated-contribution-graph-message -m "HELLO WORLD" -f svg
+npx graphsay -m "HELLO WORLD" -f svg
 ```
 
 ### Install globally
 
 ```bash
-npm install -g animated-contribution-graph-message
+npm install -g graphsay
 ```
 
 ### Install from source
 
 ```bash
-git clone https://github.com/leereilly/contribuart.git
-cd contribuart/animated-contribution-graph-message
+git clone https://github.com/leereilly/graphsay.git
+cd graphsay
 npm install
 npm run build
 ```
@@ -41,7 +41,7 @@ npm run build
 ## Usage
 
 ```bash
-npx animated-contribution-graph-message --message "HELLO WORLD" --format svg
+npx graphsay --message "HELLO WORLD" --format svg
 ```
 
 ### Options
@@ -62,14 +62,14 @@ npx animated-contribution-graph-message --message "HELLO WORLD" --format svg
 
 ```bash
 # SVG with light theme (scroll)
-npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t light
+npx graphsay -m "HELLO WORLD" -f svg -t light
 ```
 
 ![Light theme scroll](examples/hello-world-light-scroll.gif)
 
 ```bash
 # SVG with both light/dark mode support
-npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t both
+npx graphsay -m "HELLO WORLD" -f svg -t both
 ```
 
 <picture>
@@ -80,38 +80,38 @@ npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t both
 
 ```bash
 # Static centered text (dark theme)
-npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t dark --mode static
+npx graphsay -m "HELLO WORLD" -f svg -t dark --mode static
 ```
 
 ![Dark theme static](examples/hello-world-dark-static.gif)
 
 ```bash
 # Custom color
-npx animated-contribution-graph-message -m "RUST" -f svg --color "#ff6600"
+npx graphsay -m "RUST" -f svg --color "#ff6600"
 ```
 
 ![Custom color](examples/rust-custom-color.gif)
 
 ```bash
 # GIF output (requires ffmpeg)
-npx animated-contribution-graph-message -m "HELLO" -f gif -t light
+npx graphsay -m "HELLO" -f gif -t light
 ```
 
 ![GIF example](examples/hello-light-scroll.gif)
 
 ```bash
 # With background color (non-transparent)
-npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t dark --no-transparent
+npx graphsay -m "HELLO WORLD" -f svg -t dark --no-transparent
 ```
 
 ![Non-transparent dark](examples/hello-world-dark-no-transparent.gif)
 
 ```bash
 # MP4 video (requires ffmpeg)
-npx animated-contribution-graph-message -m "HELLO" -f mp4
+npx graphsay -m "HELLO" -f mp4
 ```
 
-![MP4 example](examples/hello-mp4.gif)
+➡️ [Output](examples/hello-mp4.mp4)
 
 ### Requirements
 
