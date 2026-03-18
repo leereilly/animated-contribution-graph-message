@@ -2,9 +2,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="contribution-graph.svg">
-    <source media="(prefers-color-scheme: light)" srcset="contribution-graph.svg">
-    <img alt="Animated contribution graph message" src="contribution-graph.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="contribution-graph-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="contribution-graph-light.svg">
+    <img alt="Animated contribution graph message" src="contribution-graph-light.svg">
   </picture>
 </p>
 
@@ -55,6 +55,7 @@ npx animated-contribution-graph-message --message "HELLO WORLD" --format svg
 | `--color <HEX>` | Text color hex code | `#40c463` |
 | `--mode <MODE>` | `scroll` or `static` | `scroll` |
 | `--speed <SECONDS>` | Step interval in seconds | `0.15` |
+| `--no-transparent` | Add a background color instead of transparent | transparent |
 
 ### Examples
 
@@ -92,6 +93,11 @@ npx animated-contribution-graph-message -m "HELLO" -f gif -t light
 ```
 
 ![GIF example](examples/hello-light-scroll.gif)
+
+```bash
+# With background color (non-transparent)
+npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t dark --no-transparent
+```
 
 ```bash
 # MP4 video (requires ffmpeg)

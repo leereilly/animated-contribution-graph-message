@@ -82,6 +82,7 @@ export function renderSvg(
   duration: number,
   cellSize: number,
   cellGap: number,
+  transparent: boolean = true,
 ): string {
   const pitch = cellSize + cellGap;
   const svgWidth = NUM_COLS * pitch - cellGap;
@@ -92,21 +93,39 @@ export function renderSvg(
   let svg = "";
   svg += `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}">\n`;
 
+  const lightBg = "#ffffff";
+  const darkBg = "#0d1117";
+
   if (darkPalette) {
     svg += "<style>\n";
     svg += ":root {\n";
+    if (!transparent) {
+      svg += `  --bg: ${lightBg};\n`;
+    }
     for (let i = 0; i < palette.colors.length; i++) {
       svg += `  --c${i}: ${palette.colors[i]};\n`;
     }
     svg += "}\n";
     svg += "@media (prefers-color-scheme: dark) {\n";
     svg += "  :root {\n";
+    if (!transparent) {
+      svg += `    --bg: ${darkBg};\n`;
+    }
     for (let i = 0; i < darkPalette.colors.length; i++) {
       svg += `    --c${i}: ${darkPalette.colors[i]};\n`;
     }
     svg += "  }\n";
     svg += "}\n";
     svg += "</style>\n";
+  }
+
+  if (!transparent) {
+    if (darkPalette) {
+      svg += `  <rect x="0" y="0" width="${svgWidth}" height="${svgHeight}" fill="var(--bg)"/>\n`;
+    } else {
+      const bgColor = palette.name === "github-dark" ? darkBg : lightBg;
+      svg += `  <rect x="0" y="0" width="${svgWidth}" height="${svgHeight}" fill="${bgColor}"/>\n`;
+    }
   }
 
   for (let col = 0; col < NUM_COLS; col++) {

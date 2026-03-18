@@ -26,6 +26,7 @@ export interface CliOptions {
   color: string;
   mode: Mode;
   speed: number;
+  transparent: boolean;
 }
 
 function formatExtension(fmt: Format): string {
@@ -87,6 +88,10 @@ export function parseCli(argv: string[]): CliOptions {
       "Step interval in seconds (must be > 0)",
       validateSpeed,
       0.15,
+    )
+    .option(
+      "--no-transparent",
+      "Add a background color instead of transparent",
     );
 
   program.parse(argv);
@@ -121,6 +126,7 @@ export function parseCli(argv: string[]): CliOptions {
     color: opts.color,
     mode: opts.mode as Mode,
     speed: opts.speed,
+    transparent: opts.transparent !== false,
   };
 }
 
@@ -196,6 +202,7 @@ export async function run(args: CliOptions): Promise<void> {
         animResult.duration,
         11,
         3,
+        args.transparent,
       );
       fs.writeFileSync(outputPath, svgContent);
       console.log(`Created ${outputPath}`);

@@ -5,7 +5,7 @@ import { generateGrid, NUM_COLS, NUM_ROWS } from "../src/grid.js";
 import { GITHUB_LIGHT, GITHUB_DARK } from "../src/palette.js";
 import { renderText } from "../src/text.js";
 
-function makeTestSvg(dark: boolean): string {
+function makeTestSvg(dark: boolean, transparent: boolean = true): string {
   const grid = generateGrid();
   const sprite = renderText("HI");
   const result = computeScrollAnimation(
@@ -23,6 +23,7 @@ function makeTestSvg(dark: boolean): string {
     result.duration,
     11,
     3,
+    transparent,
   );
 }
 
@@ -92,8 +93,30 @@ describe("svg", () => {
       result.duration,
       11,
       3,
+      true,
     );
     expect(svg).toContain("var(--c");
     expect(svg).not.toContain("var(--bg)");
+  });
+
+  it("transparent true does not include background rect", () => {
+    const svg = makeTestSvg(false, true);
+    // Should not have a full-width background rect
+    const svgWidth = NUM_COLS * 14 - 3;
+    const svgHeight = NUM_ROWS * 14 - 3;
+    expect(svg).not.toContain(`width="${svgWidth}" height="${svgHeight}" fill=`);
+  });
+
+  it("transparent false includes background rect for light theme", () => {
+    const svg = makeTestSvg(false, false);
+    expect(svg).toContain('fill="#ffffff"');
+    expect(svg).toContain('x="0" y="0"');
+  });
+
+  it("transparent false with both theme uses CSS variable for background", () => {
+    const svg = makeTestSvg(true, false);
+    expect(svg).toContain("var(--bg)");
+    expect(svg).toContain("--bg: #ffffff");
+    expect(svg).toContain("--bg: #0d1117");
   });
 });
