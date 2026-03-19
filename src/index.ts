@@ -99,6 +99,11 @@ export function parseCli(argv: string[]): CliOptions {
       "Disable looping (SVG plays once and freezes; GIF does not loop)",
     );
 
+  if (argv.slice(2).length === 0) {
+    program.outputHelp({ error: true });
+    process.exit(1);
+  }
+
   program.parse(argv);
   const opts = program.opts();
 
